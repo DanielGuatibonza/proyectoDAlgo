@@ -49,18 +49,19 @@ public class ProblemaA
 		// El algoritmo evalua la posibilidad de que un numero sea el inicio de un subarreglo recurrente,
 		// calcula el tamano del subarreglo recurrente más largo obtenido a partir de ese numero y actualiza 
 		// el subarreglo mas largo obtenido hasta ahora si es conveniente
-		int[] SARML = new int[0];							// Variable usada para almacenar el SubArreglo Recurrente Más Largo
+		int[] SARML = new int[0];											// Variable usada para almacenar el SubArreglo Recurrente Más Largo
 		boolean noExisteMasLargo = false;
 		for(int i=0; i<N && !noExisteMasLargo; i++)
 		{
-			boolean noExisteMasLargoActual = false;
+			boolean noExisteMasLargoActual = false; 
 			for(int j=i+1; j<N && !noExisteMasLargoActual; j++)
 			{
 				if(numeros[i]==numeros[j])
 				{
-					int[] SARA = new int[0];				// Variable usada para almacenar el SubArreglo Recurrente Actual
+					int[] SARA = new int[0];								// Variable usada para almacenar el SubArreglo Recurrente Actual
 					boolean sigueIgual = true;
 					int k = 0;
+					// Se itera mientras se este en un subarreglo recurrente
 					for(; k<N-j && sigueIgual; k++)
 					{
 						if(numeros[i+k] != numeros[j+k])
@@ -69,17 +70,20 @@ public class ProblemaA
 							k--;
 						}
 					}
+					// Actualización del subarreglo recurrente más largo
 					SARA = Arrays.copyOfRange(numeros, j, j+k);
 					if(SARA.length > SARML.length)
 					{
 						SARML = SARA;
 					}
 				}
+				// Se termina el ciclo si se sabe de antemano que el subarreglo más grande encontrado hasta ahora no va a cambiar
 				if(SARML.length >= N-j-1)
 				{
 					noExisteMasLargoActual = true;
 				}
 			}
+			// Se termina el ciclo si se sabe de antemano que el subarreglo más grande encontrado hasta ahora no va a cambiar
 			if(SARML.length >= N-i-1)
 			{
 				noExisteMasLargo = true;

@@ -126,7 +126,7 @@ public class ProblemaC
 					// Caso en el que la proyección del punto se encuentra con un vértice distinto al primero
 					else if(xEstimado == poligono.lados[i].punto2.x)
 					{
-						// Se evalua si al cruzar por el vértice la proyección cruza o no el polígono
+						// Se evalua si al cruzar por el vértice la proyección entra o sale del polígono
 						if(i!=estanDerecha.length-1)
 						{
 							if((poligono.lados[i].punto1.y > puntoInteres.y && poligono.lados[i+1].punto2.y < puntoInteres.y) || 
@@ -168,13 +168,27 @@ public class ProblemaC
 
 }
 
+/**
+ *	Clase usada para representar un punto en el plano cartesiano XY
+ */
 class Punto
 {
 	// Atributos
+	/**
+	 * Coordenada X del punto
+	 */
 	public int x;
+	/**
+	 * Coordenada Y del punto
+	 */
 	public int y;
 	
 	// Método contructor
+	/**
+	 * Método de inicialización los valores de los atributos
+	 * @param pX: Coordenada X del punto
+	 * @param pY: Coordenada Y del punto
+	 */
 	public Punto(int pX, int pY)
 	{
 		x = pX;
@@ -185,14 +199,42 @@ class Punto
 class Linea
 {
 	// Atributos
+	/**
+	 * Punto de inicio de la linea
+	 */
 	public Punto punto1;
+	
+	/**
+	 * Punto de fin de la línea
+	 */
 	public Punto punto2;
+	
+	/**
+	 * Pendiente de la recta asociada a la línea
+	 */
 	public float pendiente;
+	
+	/**
+	 * Intercepto con el eje y de la recta asociada a la línea
+	 */
 	public float intercepto;
+	
+	/**
+	 * Atributo booleano que indica si la línea es vertical
+	 */
 	public boolean xConstante;
+	
+	/**
+	 * Atributo booleano que indica si la línea es horizontal
+	 */
 	public boolean yConstante;
 	
 	// Método contructor
+	/**
+	 * Método de inicialización de los atributos
+	 * @param p1: Punto inicial de la línea
+	 * @param p2: Punto final de la línea
+	 */
 	public Linea(Punto p1, Punto p2)
 	{
 		punto1 = p1;
@@ -212,6 +254,12 @@ class Linea
 		}
 	}
 	
+	/**
+	 * Método que calcula el valor de la coordenada y para una coordenada x a partir de la recta
+	 * asociada a la línea
+	 * @param x: Coordenada x de interés
+	 * @return -1 si la recta es horizontal, la coordenada y respectiva de lo contrario
+	 */
 	public float darY(int x)
 	{
 		float resultado = -1;
@@ -226,6 +274,12 @@ class Linea
 		return resultado;
 	}
 	
+	/**
+	 * Método que calcula el valor de la coordenada x para una coordenada y a partir de la recta
+	 * asociada a la línea
+	 * @param y: Coordenada y de interés
+	 * @return -1 si la recta es vertical, la coordenada x respectiva de lo contrario
+	 */
 	public float darX(int y)
 	{
 		float resultado = -1;
@@ -244,11 +298,26 @@ class Linea
 class Poligono
 {
 	// Atributos
+	/**
+	 * Arreglo de puntos asociados a los vertices del poligono
+	 */
 	public Punto[] vertices;
+	
+	/**
+	 * Arreglo de lados del poligono
+	 */
 	public Linea[] lados;
+	
+	/**
+	 * Número de vértices agregados al polígono
+	 */
 	private int actual;
 	
 	// Método contructor
+	/**
+	 * Método de inicialización de los atributos
+	 * @param N: Tamaño del poligono
+	 */
 	public Poligono(int N)
 	{
 		vertices = new Punto[N];
@@ -256,7 +325,11 @@ class Poligono
 		actual = 0;
 	}
 	
-	// Método para insertar un nuevo punto al poligono
+	/**
+	 * Método para agregar un nuevo punto junto con su respectiva línea
+	 * @param pX: Coordenada x del punto
+	 * @param pY: Coordenada y del punto
+	 */
 	public void insertarPunto(int pX, int pY)
 	{
 		vertices[actual] = new Punto(pX,pY);

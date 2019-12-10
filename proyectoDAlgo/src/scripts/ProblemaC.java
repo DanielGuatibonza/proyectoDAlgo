@@ -7,7 +7,7 @@ import java.util.Arrays;
 
 /**
  * Programa para determinar si un punto está afuera, dentro o en la frontera de un polígono
- * @author Daniel Mateo Guatibonza Solano - Juan David Diaz Cristancho 
+ * @author Daniel Mateo Guatibonza Solano 201611360- Juan David Diaz Cristancho 201729408
  */
 public class ProblemaC 
 {
